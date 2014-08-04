@@ -1,0 +1,29 @@
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.sticky-box{
+  width:100px;
+  height:100px;
+  background:yellow;
+  color:black;
+  text-align: center;
+  float:left;
+  margin:10px;
+}
+
+.sticky-box p{
+  padding-top:20px;
+}
+
+.sticky-form{
+  opacity:0;
+}
+.hide{
+  opacity:1;
+}
+.sticky-write{
+  width:50%;
+}

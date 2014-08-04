@@ -1,0 +1,40 @@
+<div>
+  <button class="make-sticky" aria-label="Show">Make a new sticky</button>
+</div>
+
+
+
+<div class="sticky-container">
+  
+
+  <!-- Todos input -->
+  <form role="form" ng-submit="addSticky()" class="sticky-form">
+    <h2>What would you like to say?</h2>
+    <div>
+      <div class="input-group">
+        <input class="sticky-write" type="text" ng-model="sticky" placeholder="write your comments">
+        <span>
+          <input class="sticky-add" type="submit" value="Add">
+        </span>
+      </div>
+    </div>
+  </form>
+  <p></p>
+
+  <!-- sticky boxes -->
+  <div class="sticky-box" ng-repeat="sticky in stickies">
+    <p ng-model="sticky">{{ sticky }}</p>
+
+    <span class="delete-sticky">
+      <button ng-click="removeSticky($index)" aria-label="Remove">X</button>
+    </span>
+  </div>
+</div>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+  $(".make-sticky").click(function() {
+    $(".sticky-form").toggleClass("hide");
+  });
+});
+</script>

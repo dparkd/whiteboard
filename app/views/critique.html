@@ -1,0 +1,39 @@
+<div class="critique-toolbar">
+  <h2>PROJECT TITLE </h2>
+
+  <ul class="options">
+    <a href=""><li>Project Desctiption</li></a>
+    <a href="" ng-click="openPlain()"><li>add note</li></a>
+    <a href=""><li>add drawing</li></a>
+    <a href="" ng-click="openQuestion()"><li>question</li></a>
+    <a href=""><li>settings</li></a>
+  </ul>
+</div>
+
+<div class="critique-whiteboard">
+
+  whiteboard
+
+
+  <!-- sticky boxes -->
+  <div my-draggable class="sticky-box ui-widget-content" id="moveit" ng-repeat="sticky in stickies">
+    <p ng-model="sticky">{{ sticky }}</p>
+
+</div>
+
+
+
+<!-- sticky boxes -->
+<div ng-style="modalShow" class="modal">
+    <form role="form" ng-submit="addSticky()" class="action-form">
+        <div id="sticky-form">
+          <div class="input-group">
+            <input class="writing" type="text" ng-model="sticky" placeholder="write your comments">
+          </div>
+          <div class="button-group">
+            <input class="adding" type="submit" value="Add">
+            <a href="" ng-click="closeModal()">close</a>
+          </div>
+        </div>
+      </form>
+</div>

@@ -1,0 +1,96 @@
+<div>
+  <button class="critique-btn" aria-label="Show">Add a Drawing</button>
+</div>
+
+
+
+<div class="critique-container">
+
+  <form role="form" ng-submit="addDraw()" class="action-form">
+    <h2>What would you like to draw?</h2>
+
+    <div class="input-group">
+      <div id="sketch" ng-model="draw">
+        <canvas id="paint"></canvas>
+      </div>
+      <input class="drawing-add" type="submit" value="Add">
+    </div>
+  </form>
+  
+
+  <img my-draggable src="" id="image" alt="">
+
+</div>
+
+
+<script type="text/javascript">
+$( document ).ready(function() {
+  //IN order to make board show up.
+  $(".critique-btn").click(function() {
+    $(".action-form").toggleClass("hide");
+  });
+
+  //canvas drawing scripts
+  var canvas = document.querySelector('#paint');
+  var ctx = canvas.getContext('2d');
+   
+  var sketch = document.querySelector('#sketch');
+  var sketch_style = getComputedStyle(sketch);
+  canvas.width = parseInt(sketch_style.getPropertyValue('width'));
+  canvas.height = parseInt(sketch_style.getPropertyValue('height'));
+
+  var mouse = {x: 0, y: 0};
+ 
+  /* Mouse Capturing Work */
+  canvas.addEventListener('mousemove', function(e) {
+    mouse.x = e.pageX - this.offsetLeft;
+    mouse.y = e.pageY - this.offsetTop;
+  }, false);
+
+  /* Drawing on Paint App */
+  ctx.lineWidth = 2;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = 'blue';
+   
+  canvas.addEventListener('mousedown', function(e) {
+      ctx.beginPath();
+      ctx.moveTo(mouse.x, mouse.y);
+   
+      canvas.addEventListener('mousemove', onPaint, false);
+  }, false);
+   
+  canvas.addEventListener('mouseup', function() {
+      canvas.removeEventListener('mousemove', onPaint, false);
+  }, false);
+   
+  var onPaint = function() {
+      ctx.lineTo(mouse.x, mouse.y);
+      ctx.stroke();
+  };
+
+  //Save canvas as an img
+ 
+
+  $(".drawing-add").click(function() {
+    var painting = document.getElementById("paint");
+    var img = painting.toDataURL("image/png");
+
+    document.getElementById('image').src = img;
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

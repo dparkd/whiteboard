@@ -2,21 +2,21 @@
 
 /**
  * @ngdoc function
- * @name codeApp.controller:StickyCtrl
+ * @name codeApp.controller:QuestionCtrl
  * @description
- * # StickyCtrl
+ * # QuestionCtrl
  * Controller of the codeApp
  */
 angular.module('whiteboardApp')
-  .controller('StickyCtrl', function ($scope) {
-    $scope.stickies = [];
+  .controller('QuestionCtrl', function ($scope) {
+    $scope.questions = [];
 
-    $scope.addSticky = function () {
-      $scope.stickies.push($scope.sticky);
-      $scope.sticky = '';
+    $scope.addQuestion = function () {
+      $scope.questions.push($scope.question);
+      $scope.question = '';
     };
 
-    $scope.removeSticky = function(index) {
-      $scope.stickies.splice(index, 1);
+    $scope.removeQuestion = function(index) {
+      $scope.questions.splice(index, 1);
     };
   });

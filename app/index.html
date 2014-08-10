@@ -5,13 +5,18 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog.css" />
+    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog-theme-default.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    
     <!-- endbuild -->
   </head>
   <body ng-app="whiteboardApp">
@@ -22,15 +27,30 @@
     <!-- Add your site or application content here -->
     <div class="container">
       <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#/sticky">Sticky</a></li>
-          <li><a ng-href="#/question">Question</a></li>
-        </ul>
+
+        <div class="logo">
+          <img src="images/critique/logo.png" alt="logo">
+        </div>
+
+        <a href="#" class="add-whiteboard">
+          <i class="fa fa-plus-circle fa-3x fa-inverse"></i><br>
+          <p>Add Whiteboard</p>
+        </a>
+
+        <form role="form" class="search-form">
+          <div>
+            <div class="input-group">
+              <input class="search-write" type="text" placeholder="Search user, tag, or project">
+            </div>
+          </div>
+        </form>
+
+        <div class="profile">
+          Profile area
+        </div>
       </div>
 
-      <div ng-view=""></div>
+      <div ng-view="" class="ng-view-wrapper"></div>
     </div>
 
 
@@ -63,6 +83,8 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/ngDialog/js/ngDialog.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -72,6 +94,8 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/sticky.js"></script>
         <script src="scripts/controllers/question.js"></script>
+        <script src="scripts/controllers/draw.js"></script>
+        <script src="scripts/controllers/critique.js"></script>
         <!-- endbuild -->
 </body>
 </html>

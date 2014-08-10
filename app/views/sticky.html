@@ -1,14 +1,13 @@
-<div>
-  <button class="make-sticky" aria-label="Show">Make a new sticky</button>
-</div>
+<button class="critique-btn" aria-label="Show">Add a Sticky</button>
 
 
+<div class="critique-container">
 
-<div class="sticky-container">
+
   
 
   <!-- Todos input -->
-  <form role="form" ng-submit="addSticky()" class="sticky-form">
+  <form role="form" ng-submit="addSticky()" class="action-form">
     <h2>What would you like to say?</h2>
     <div>
       <div class="input-group">
@@ -22,19 +21,21 @@
   <p></p>
 
   <!-- sticky boxes -->
-  <div class="sticky-box" ng-repeat="sticky in stickies">
+  <div my-draggable class="sticky-box ui-widget-content" id="moveit" ng-repeat="sticky in stickies">
     <p ng-model="sticky">{{ sticky }}</p>
 
-    <span class="delete-sticky">
-      <button ng-click="removeSticky($index)" aria-label="Remove">X</button>
+    <span>
+      <button class="delete-sticky" ng-click="removeStickys($index)" aria-label="Remove">REMOVE</button>
     </span>
   </div>
 </div>
 
+
 <script type="text/javascript">
 $( document ).ready(function() {
-  $(".make-sticky").click(function() {
-    $(".sticky-form").toggleClass("hide");
+
+  $(".critique-btn").click(function() {
+    $(".action-form").toggleClass("hide");
   });
 });
 </script>

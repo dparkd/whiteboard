@@ -22,12 +22,8 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        templateUrl: 'views/gallery.html',
+        controller: 'GalleryCtrl'
       })
       .when('/sticky', {
         templateUrl: 'views/sticky.html',
@@ -45,12 +41,59 @@ angular
         templateUrl: 'views/critique.html',
         controller: 'CritiqueCtrl'
       })
+      .when('/whiteboard', {
+        templateUrl: 'views/whiteboard.html',
+        controller: 'whiteboardCtrl'
+      })
+      .when('/project', {
+        templateUrl: 'views/project.html',
+        controller: 'projectCtrl'
+      })
       .otherwise({
         redirectTo: '/'
-      });
+      })
   });
 
-  /* ===== DIRECTIVES =====*/
+
+
+
+/* ===== STICKY FACTORY =====*/
+
+angular.module('whiteboardApp').factory('Data', function() {
+
+  //STICKIES
+  var stickies = [];
+
+   return {
+        listSticky: function() {
+            return stickies;   // items exist already so just return the array
+        },
+        saveSticky: function(item) {
+            stickies.push(item);
+            return stickies;
+        }
+    }
+});
+
+angular.module('whiteboardApp').factory('questionData', function() {
+
+  //QUESTIONS
+  var questions = [];
+
+   return {
+        listQuestion: function() {
+            return questions;   // items exist already so just return the array
+        },
+        saveQuestion: function(item) {
+            questions.push(item);
+            return questions;
+        }
+    }
+});
+
+
+
+/* ===== DIRECTIVES =====*/
 
 
   //DRAG MODULE

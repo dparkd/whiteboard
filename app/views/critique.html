@@ -1,10 +1,10 @@
 <div class="critique-toolbar">
-  <h2>PROJECT TITLE </h2>
+  <h2>EDGE U of A Branding</h2>
 
   <ul class="options">
-    <a href=""><li>Project Desctiption</li></a>
-    <a href="" ng-click="openPlain()"><li>add note</li></a>
-    <a href=""><li>add drawing</li></a>
+    <a href="" ng-click=""><li>Project Desctiption</li></a>
+    <a href="" ng-click="openSticky()"><li>add note</li></a>
+    <a href="" ng-click="openDrawing()"><li>add drawing</li></a>
     <a href="" ng-click="openQuestion()"><li>question</li></a>
     <a href=""><li>settings</li></a>
   </ul>
@@ -12,28 +12,135 @@
 
 <div class="critique-whiteboard">
 
-  whiteboard
-
-
   <!-- sticky boxes -->
-  <div my-draggable class="sticky-box ui-widget-content" id="moveit" ng-repeat="sticky in stickies">
+  <div my-draggable class="sticky-box" id="moveit" ng-repeat="sticky in stickies">
     <p ng-model="sticky">{{ sticky }}</p>
+  </div>
+
+   <!-- DRAWING boxes -->
+  <div my-draggable class="draw-box" ng-repeat="draw in drawings">
+    <img my-draggable src="" id="image" alt="">
+  </div>
+
+  <!-- Question boxes -->
+  <div my-draggable class="question-box" ng-repeat="question in questions">
+    <p ng-model="question">{{ question }}</p>
+  </div>
+
+
 
 </div>
+
+
 
 
 
 <!-- sticky boxes -->
-<div ng-style="modalShow" class="modal">
-    <form role="form" ng-submit="addSticky()" class="action-form">
-        <div id="sticky-form">
-          <div class="input-group">
-            <input class="writing" type="text" ng-model="sticky" placeholder="write your comments">
-          </div>
-          <div class="button-group">
-            <input class="adding" type="submit" value="Add">
-            <a href="" ng-click="closeModal()">close</a>
-          </div>
-        </div>
-      </form>
+<div ng-style="stickyShow" class="modal">
+  <form role="form" ng-submit="addSticky()" class="action-form">
+    <div id="sticky-form">
+      <div class="input-group">
+        <p>Write your note</p>
+        <input class="writing" type="text" ng-model="sticky">
+      </div>
+      <div class="button-group">
+        <input class="adding" type="submit" value="SAVE">
+        <a href="" ng-click="closeModal()">close</a>
+      </div>
+    </div>
+  </form>
 </div>
+
+<!-- Add drawing -->
+<div ng-style="drawShow" class="modal">
+   <form role="form" ng-submit="addDraw()" class="action-form">
+    <div id="draw-form">
+      <div class="input-group">
+        <p>What would you like to draw?</p>
+        <div id="sketch" ng-model="draw">
+          <canvas id="paint"></canvas>
+        </div>
+      </div>
+      <div class="button-group">
+        <a href="" ng-click="saveDrawing()">SAVE</a>
+        <a href="" ng-click="closeModal()">close</a>
+      </div>
+
+      
+    </div>
+  </form>
+</div>
+
+<!-- Add Question -->
+<div ng-style="questionShow" class="modal">
+   <form role="form" ng-submit="addQuestion()" class="action-form">
+    <div id="question-form">
+      <div class="input-group">
+        <p>Write your question</p>
+        <input class="writing" type="text" ng-model="question">
+      </div>
+      <div class="button-group">
+        <input class="adding" type="submit" value="SAVE">
+        <a href="" ng-click="closeModal()">close</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+$( document ).ready(function() {
+  //canvas drawing scripts
+  var canvas = document.querySelector('#paint');
+  var ctx = canvas.getContext('2d');
+   
+  var sketch = document.querySelector('#sketch');
+  var sketch_style = getComputedStyle(sketch);
+  canvas.width = parseInt(sketch_style.getPropertyValue('width'));
+  canvas.height = parseInt(sketch_style.getPropertyValue('height'));
+
+  var mouse = {x: 0, y: 0};
+ 
+  /* Mouse Capturing Work */
+  canvas.addEventListener('mousemove', function(e) {
+    mouse.x = e.pageX - this.offsetLeft;
+    mouse.y = e.pageY - this.offsetTop;
+  }, false);
+
+  /* Drawing on Paint App */
+  ctx.lineWidth = 2;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = 'blue';
+   
+  canvas.addEventListener('mousedown', function(e) {
+      ctx.beginPath();
+      ctx.moveTo(mouse.x, mouse.y);
+   
+      canvas.addEventListener('mousemove', onPaint, false);
+  }, false);
+   
+  canvas.addEventListener('mouseup', function() {
+      canvas.removeEventListener('mousemove', onPaint, false);
+  }, false);
+   
+  var onPaint = function() {
+      ctx.lineTo(mouse.x, mouse.y);
+      ctx.stroke();
+  };
+
+  //Save canvas as an img
+ 
+
+  $("#draw-saving").click(function() {
+    var painting = document.getElementById("paint");
+    var img = painting.toDataURL("image/png");
+
+    document.getElementById('image').src = img;
+  });
+});
+</script>

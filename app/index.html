@@ -16,6 +16,9 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/critique.css">
+    <link rel="stylesheet" href="styles/whiteboard.css">
+    <link rel="stylesheet" href="styles/gallery.css">
     
     <!-- endbuild -->
   </head>
@@ -29,13 +32,14 @@
       <div class="header">
 
         <div class="logo">
-          <img src="images/critique/logo.png" alt="logo">
+          <a href="#/"><img src="images/critique/logo.png" alt="logo"></a>
         </div>
 
-        <a href="#" class="add-whiteboard">
+        <a href="#/whiteboard" class="add-whiteboard">
           <i class="fa fa-plus-circle fa-3x fa-inverse"></i><br>
           <p>Add Whiteboard</p>
         </a>
+        <a href="#/critique" style="position:fixed">critique</a>
 
         <form role="form" class="search-form">
           <div>
@@ -44,10 +48,18 @@
             </div>
           </div>
         </form>
-
-        <div class="profile">
-          Profile area
-        </div>
+        
+        <a href="#" id="profile-link">
+          <div class="profile">
+            <div id="profile-face">
+              <img src="images/andy.png" alt="andy-face">
+            </div>
+            <div id="about-face">
+              <h3>Aaron Cheng</h3>
+              <p>Interactive Design</p>
+            </div>
+          </div>
+        </a>
       </div>
 
       <div ng-view="" class="ng-view-wrapper"></div>
@@ -96,6 +108,8 @@
         <script src="scripts/controllers/question.js"></script>
         <script src="scripts/controllers/draw.js"></script>
         <script src="scripts/controllers/critique.js"></script>
+        <script src="scripts/controllers/whiteboard.js"></script>
+        <script src="scripts/controllers/project.js"></script>
         <!-- endbuild -->
 </body>
 </html>

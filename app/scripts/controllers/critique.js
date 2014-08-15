@@ -7,31 +7,27 @@
  * # critiqueCtrl
  * Controller of the codeApp
  */
-angular.module('whiteboardApp').service('Data', function() {
-  var stickies = ['sample'];
 
-   return {
-        listSticky: function() {
-            return stickies;   // items exist already so just return the array
-        },
-        saveSticky: function(item) {
-            stickies.push(item);
-            return stickies;
-        }
-    }
-});
-
-
-
-function CritiqueCtrl($scope, Data, ngDialog) {
+function CritiqueCtrl($scope, Data, ngDialog, $http, questionData) {
     //MODALS
     $scope.closeModal = function() {
-      $scope.modalShow = {'opacity':'0', 'pointer-events':'none'};
-    }
-
-    $scope.openPlain = function() {
-      $scope.modalShow = {'opacity':'1', 'pointer-events':'auto'};
+      $scope.stickyShow = {'opacity':'0', 'pointer-events':'none'};
+      $scope.questionShow = {'opacity':'0', 'pointer-events':'none'};
+      $scope.drawShow = {'opacity':'0', 'pointer-events':'none'};
     };
+
+    
+
+    $scope.openSticky = function() {
+      $scope.stickyShow = {'opacity':'1', 'pointer-events':'auto'};
+    };
+    $scope.openDrawing = function() {
+      $scope.drawShow = {'opacity':'1', 'pointer-events':'auto'};
+    };
+    $scope.openQuestion = function() {
+      $scope.questionShow = {'opacity':'1', 'pointer-events':'auto'};
+    };
+
 
 
     //STICKIES
@@ -39,12 +35,25 @@ function CritiqueCtrl($scope, Data, ngDialog) {
 
     $scope.addSticky = function () {
       Data.saveSticky($scope.sticky);
-      $scope.modalShow = {'opacity':'0', 'pointer-events':'none'};
+      $scope.stickyShow = {'opacity':'0', 'pointer-events':'none'};
     };
 
+    //DRAWINGS
+    $scope.addDraw = function () {
+      drawData.saveDraw($scope.draw);
+      $scope.drawShow = {'opacity':'0', 'pointer-events':'none'};
+    };
 
+    //QUESTIONS
+    $scope.questions = questionData.listQuestion();
+
+    $scope.addQuestion = function () {
+      questionData.saveQuestion($scope.question);
+      $scope.questionShow = {'opacity':'0', 'pointer-events':'none'};
+    };
+
+    
 };
-
 
 
 

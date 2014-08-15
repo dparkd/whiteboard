@@ -1,0 +1,49 @@
+<div class="sub-navbar">
+
+  <a href="#">
+    <div class="sub-button" id="hide-leftbar">
+      Hide Critiques
+    </div>
+  </a>
+
+  <p id="person-title">{{ people[selectedIndex] }}'s Critique</p>
+
+  <a href="#/critique">
+    <div class="sub-button" id="add-critique">
+      Add Critique
+    </div>
+  </a>
+  
+</div>
+
+
+<div class="gallery-container">
+
+  <div id="project-whiteboard">
+    <img id="edge-logo" src="images/edgelogo.png" alt="edge-logo">
+    <img src="images/edgestationary.jpg" alt="edge-stationary">
+  </div>
+
+</div>
+
+
+<div class="sort-by">
+  <br>
+  <br>
+  <a ng-repeat="person in people" ng-click="personClicked($index)" href="" id="critique-button">
+    <div ng-class="{'activePerson': $index == selectedIndex}" class="critique-person">
+      <h3>{{person}}</h3>
+      <p>September 21, 2014</p>
+    </div>
+  </a>
+</div>
+
+
+
+
+
+
+
+
+
+

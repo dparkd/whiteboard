@@ -13,19 +13,28 @@
 <div class="critique-whiteboard">
 
   <!-- sticky boxes -->
-  <div my-draggable class="sticky-box" id="moveit" ng-repeat="sticky in stickies">
-    <p ng-model="sticky">{{ sticky }}</p>
-  </div>
+    <div my-draggable class="sticky-box" ng-repeat="sticky in stickies">
+      <a href="" ng-click="isActive = !isActive">N</a>
+      <div ng-init="isActive = false" ng-class="{'hide-stick': !isActive, 'active-stick': isActive}">{{sticky}} </div>
+    </div>
+
 
    <!-- DRAWING boxes -->
-  <div my-draggable class="draw-box" ng-repeat="draw in drawings">
-    <img my-draggable src="" id="image" alt="">
-  </div>
+   <div my-draggable class="draw-box" ng-repeat="drawing in drawings track by $index">
+      <a href="" ng-click="isActive = !isActive">D</a>
+      <div ng-init="isActive = false" ng-class="{'hide-stick': !isActive, 'active-stick': isActive}"><img ng-src="{{ drawing }}" alt=""></div>
+    </div>
+
 
   <!-- Question boxes -->
   <div my-draggable class="question-box" ng-repeat="question in questions">
-    <p ng-model="question">{{ question }}</p>
+    <a href="" ng-click="isActive = !isActive">Q</a>
+    <div ng-init="isActive = false" ng-class="{'hide-stick': !isActive, 'active-stick': isActive}">{{question}} </div>
   </div>
+
+  <!--WHITEBOARD PROJECT-->
+    <img id="edge-logo" src="images/edgelogo.png" alt="edge-logo">
+    <img src="images/edgestationary.jpg" alt="edge-stationary">
 
 
 
@@ -40,11 +49,10 @@
   <form role="form" ng-submit="addSticky()" class="action-form">
     <div id="sticky-form">
       <div class="input-group">
-        <p>Write your note</p>
-        <input class="writing" type="text" ng-model="sticky">
+        <input class="writing" type="text" placeholder="Write your note" ng-model="sticky">
       </div>
       <div class="button-group">
-        <input class="adding" type="submit" value="SAVE">
+        <a href="" ng-click="addSticky()">SAVE</a>
         <a href="" ng-click="closeModal()">close</a>
       </div>
     </div>
@@ -62,11 +70,10 @@
         </div>
       </div>
       <div class="button-group">
-        <a href="" ng-click="saveDrawing()">SAVE</a>
-        <a href="" ng-click="closeModal()">close</a>
+        <a href="" ng-click="saveDraw()" id="draw-saving">SAVE</a>
+        <a href="" ng-click="closeModal()">CLOSE</a>
+        <button id="clearDrawing">Clear Drawing</button>
       </div>
-
-      
     </div>
   </form>
 </div>
@@ -76,11 +83,10 @@
    <form role="form" ng-submit="addQuestion()" class="action-form">
     <div id="question-form">
       <div class="input-group">
-        <p>Write your question</p>
-        <input class="writing" type="text" ng-model="question">
+        <input class="writing" type="text" placeholder="Write your question" ng-model="question">
       </div>
       <div class="button-group">
-        <input class="adding" type="submit" value="SAVE">
+        <a href="" ng-click="addQuestion()">SAVE</a>
         <a href="" ng-click="closeModal()">close</a>
       </div>
     </div>
@@ -115,7 +121,7 @@ $( document ).ready(function() {
   ctx.lineWidth = 2;
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
-  ctx.strokeStyle = 'blue';
+  ctx.strokeStyle = '#34495E';
    
   canvas.addEventListener('mousedown', function(e) {
       ctx.beginPath();
@@ -133,14 +139,23 @@ $( document ).ready(function() {
       ctx.stroke();
   };
 
-  //Save canvas as an img
- 
-
-  $("#draw-saving").click(function() {
-    var painting = document.getElementById("paint");
-    var img = painting.toDataURL("image/png");
-
-    document.getElementById('image').src = img;
+  $("#clearDrawing").click(function() {
+    ctx.clearRect ( 0 , 0 , canvas.width , canvas.height );
   });
 });
+
+  //Save canvas as an img
+  var drawingArray = [];
+  $("#draw-saving").click(function() {
+    var painting = document.getElementById("paint");
+    drawingArray.push(painting.toDataURL("image/png"));
+  });
+
 </script>
+
+
+
+
+
+
+

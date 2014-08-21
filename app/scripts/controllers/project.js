@@ -16,7 +16,6 @@ angular.module('whiteboardApp')
 
     $scope.personClicked = function($index){
       $scope.selectedIndex = $index;
-          console.log($index);
     };
 
 

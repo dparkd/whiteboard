@@ -8,7 +8,7 @@
  * Controller of the codeApp
  */
 
-function CritiqueCtrl($scope, Data, ngDialog, $http, questionData) {
+function CritiqueCtrl($scope, Data, ngDialog, $http, questionData, drawData) {
     //MODALS
     $scope.closeModal = function() {
       $scope.stickyShow = {'opacity':'0', 'pointer-events':'none'};
@@ -17,7 +17,7 @@ function CritiqueCtrl($scope, Data, ngDialog, $http, questionData) {
     };
 
     
-
+    //MODAL EVENT CLICKS
     $scope.openSticky = function() {
       $scope.stickyShow = {'opacity':'1', 'pointer-events':'auto'};
     };
@@ -28,7 +28,7 @@ function CritiqueCtrl($scope, Data, ngDialog, $http, questionData) {
       $scope.questionShow = {'opacity':'1', 'pointer-events':'auto'};
     };
 
-
+     
 
     //STICKIES
     $scope.stickies = Data.listSticky();
@@ -38,11 +38,6 @@ function CritiqueCtrl($scope, Data, ngDialog, $http, questionData) {
       $scope.stickyShow = {'opacity':'0', 'pointer-events':'none'};
     };
 
-    //DRAWINGS
-    $scope.addDraw = function () {
-      drawData.saveDraw($scope.draw);
-      $scope.drawShow = {'opacity':'0', 'pointer-events':'none'};
-    };
 
     //QUESTIONS
     $scope.questions = questionData.listQuestion();
@@ -52,8 +47,45 @@ function CritiqueCtrl($scope, Data, ngDialog, $http, questionData) {
       $scope.questionShow = {'opacity':'0', 'pointer-events':'none'};
     };
 
+     //DRAWINGS
+    $scope.drawingArray = drawingArray;
+    $scope.drawingCounter = 0;
+    $scope.drawings = drawData.listDrawing();
+
+    $scope.saveDraw = function () {
+      drawData.saveDrawing($scope.drawingArray[$scope.drawingCounter]);
+      $scope.drawShow = {'opacity':'0', 'pointer-events':'none'};
+      $scope.drawingCounter ++;
+
+      console.log($scope.drawings);
+    };
+
+  
+
     
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

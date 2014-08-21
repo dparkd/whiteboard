@@ -57,7 +57,7 @@ angular
 
 
 
-/* ===== STICKY FACTORY =====*/
+/* ===== FACTORIES =====*/
 
 angular.module('whiteboardApp').factory('Data', function() {
 
@@ -91,6 +91,24 @@ angular.module('whiteboardApp').factory('questionData', function() {
     }
 });
 
+angular.module('whiteboardApp').factory('drawData', function() {
+
+  //DRAWINGS
+  var drawings = [];
+
+   return {
+        listDrawing: function() {
+            return drawings;   // items exist already so just return the array
+        },
+        saveDrawing: function(item) {
+            drawings.push(item);
+            return drawings;
+        }
+    }
+});
+
+
+
 
 
 /* ===== DIRECTIVES =====*/
@@ -103,8 +121,7 @@ angular.module('whiteboardApp').factory('questionData', function() {
       var startX = 0, startY = 0, x = 0, y = 0;
 
       element.css({
-       position: 'relative',
-       cursor: 'pointer'
+       position: 'absolute'
       });
 
       element.on('mousedown', function(event) {
@@ -131,11 +148,3 @@ angular.module('whiteboardApp').factory('questionData', function() {
       }
     };
   }]);
-
-
-
-
-
-
-
-

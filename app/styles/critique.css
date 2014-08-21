@@ -46,6 +46,7 @@
   position:relative;
   top:40px;
   width:70%;
+  padding:10px;
   min-height:700px;
   margin:0 auto;
   background:white;
@@ -193,29 +194,112 @@
 /* BOX STYLES */
 
 .sticky-box{
-  min-width:100px;
-  min-height:100px;
-  background:#ffeb3b;
-  color:black;
+  background:rgba(255, 235, 59, 1);
   text-align: center;
   float:left;
   margin:10px;
   padding:20px;
 
-  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.12);
+  box-shadow:2px 2px 2px rgba(0, 0, 0, 0.12);
+}
+.question-box{
+  background:white;
+  text-align: center;
+  float:left;
+  margin:10px;
+  padding:20px;
+
+  box-shadow:2px 2px 2px rgba(0, 0, 0, 0.12);
+}
+.draw-box{
+  background:#2C3E50;
+  text-align: center;
+  float:left;
+  width:10px;
+  height:20px;
+  margin:10px;
+  padding:20px;
+  color:white;
+
+  box-shadow:2px 2px 2px rgba(0, 0, 0, 0.12);
+}
+.draw-box img{
+  width:800px;
+  height:auto;
+  float:right;
+}
+.draw-box a{
+  color:white;
 }
 
-.question-box{
+.sticky-box:hover{
+  cursor:move;
+}
+.sticky-box a, .question-box a{
+  text-decoration: none;
+  margin-top:-10px;
+  font-weight:700;
+  color:#6C7A89;
+}
+.hide-stick{
+  opacity:0;
+  pointer-events:none;
+  font-size:0;
+}
+.active-stick{
+  position:absolute;
+  opacity:1;
+  pointer-events:auto;
+  padding:10px;
   min-width:100px;
-  min-height:100px;
-  background::;
-  color:black;
-  text-align: center;
-  float:left;
-  margin:10px;
-  padding:20px;
+  min-height:25px;
+  background:#fcfdfd;
+  left:80px;
+  top:0;
 
-  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.12);
+  border: 1px solid #DADFE1;
+  border-radius:3px;
+}
+.active-stick:after, .active-stick:before {
+  right: 100%;
+  top: 20px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.active-stick:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-right-color: #fcfdfd;
+  border-width: 10px;
+  margin-top: -10px;
+}
+.active-stick:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-right-color: #DADFE1;
+  border-width: 11px;
+  margin-top: -11px;
+}
+
+
+
+
+
+
+
+
+#canvas{
+  border-bottom: 1px solid rgba(0,0,0,0.3); 
+  background-color: #FFF;
+  box-shadow: 0 9px 20px -5px rgba(0,0,0,0.8);
+}
+
+.sticky-box p{
+  margin:0;
+  margin-top:-8px;
 }
 
 .question-write{

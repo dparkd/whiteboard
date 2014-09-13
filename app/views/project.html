@@ -1,6 +1,6 @@
 <div class="sub-navbar">
 
-  <a href="#">
+  <a href="">
     <div class="sub-button" id="hide-leftbar">
       Hide Critiques
     </div>
@@ -22,8 +22,30 @@
   <div id="project-whiteboard">
     <img id="edge-logo" src="images/edgelogo.png" alt="edge-logo">
     <img src="images/edgestationary.jpg" alt="edge-stationary">
-  </div>
 
+    <div id="critiques">
+
+      <div id="andy">
+        <div class="sticky-box" style="position: absolute; top: 88px; left: 262px;">
+          <a href="" ng-click="isActive = !isActive"><img src="images/note.png" class="icon" alt="note"></a>
+          <div ng-init="isActive = false" ng-class="{'hide-stick': !isActive, 'active-stick': isActive}">{{critiquenotes[0]}} </div>
+        </div>
+        
+        <div class="question-box" style="position: absolute; top: 43px; left: 483px;">
+          <a href="" ng-click="isActive = !isActive"><img src="images/question.png" class="icon" alt="question"></a>
+          <div ng-init="isActive = false" ng-class="{'hide-stick': !isActive, 'active-stick': isActive}">{{questions[0]}} </div>
+        </div>
+
+        <div style="position: absolute; top: 161px; left: 250px;" class="draw-box">
+          <a href="" ng-click="isActive = !isActive"><img class="icon" src="images/draw.png" alt="draw"></a>
+          <div id="drawing" ng-init="isActive = false" ng-class="{'hide-stick': !isActive, 'active-stick': isActive}"><img src="images/drawing.png" alt=""></div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+  </div>
 </div>
 
 
@@ -36,9 +58,19 @@
       <p>September 21, 2014</p>
     </div>
   </a>
+  <a ng-click="personClicked($index)" href="" id="critique-button">
+    <div ng-class="{'activePerson': $index == selectedIndex}" class="critique-person">
+      <h3>{{user[0]}}</h3>
+      <p id="today-date"></p>
+    </div>
+  </a>
 </div>
 
-
+<script>
+  $('#hide-leftbar').click(function() {
+    $('#andy').toggleClass('hide');
+  })
+</script>
 
 
 

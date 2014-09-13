@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -17,8 +17,10 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/critique.css">
-    <link rel="stylesheet" href="styles/whiteboard.css">
+
     <link rel="stylesheet" href="styles/gallery.css">
+    <link rel="stylesheet" href="styles/whiteboard.css">
+    <link rel="stylesheet" href="styles/intro.css">
     
     <!-- endbuild -->
   </head>
@@ -28,7 +30,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
+    <div class="container" ng-controller="whiteboardCtrl">
       <div class="header">
 
         <div class="logo">
@@ -36,10 +38,9 @@
         </div>
 
         <a href="#/whiteboard" class="add-whiteboard">
-          <i class="fa fa-plus-circle fa-3x fa-inverse"></i><br>
-          <p>Add Whiteboard</p>
+          <i class="fa fa-plus-circle fa-2x fa-inverse"></i><br>
+          <p class="tooltip">Add Whiteboard</p>
         </a>
-        <a href="#/critique" style="position:fixed">critique</a>
 
         <form role="form" class="search-form">
           <div>
@@ -49,17 +50,52 @@
           </div>
         </form>
         
-        <a href="#" id="profile-link">
+        <a ng-click="openProfile()" href="" id="profile-link">
           <div class="profile">
             <div id="profile-face">
-              <img src="images/andy.png" alt="andy-face">
+              <img src="images/user2.png" alt="andy-face">
             </div>
             <div id="about-face">
-              <h3>Aaron Cheng</h3>
-              <p>Interactive Design</p>
+              <h3>{{ user[0] }}</h3>
+              <p>{{ user [2] }}</p>
             </div>
           </div>
         </a>
+      </div>
+      
+      <!-- PROFILE -->
+      <div ng-style="profileShow" class="modal">
+         <form role="form" ng-submit="addUser()" class="action-form">
+          <div id="profile-form">
+            <h5>Enter your Information</h5>
+            <div class="input-group">
+              <input class="pd" type="text" placeholder="Your Name" ng-model="name">
+              <input class="pd" type="text" placeholder="Your School" ng-model="school">
+              <input class="pd" type="text" placeholder="Your Design Area" ng-model="area">
+            </div>
+
+            <div class="button-group">
+              <a href="" class="save" ng-click="addUser()">SAVE</a>
+              <a href="" ng-click="closeModal()">close</a>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="help">
+        <a href="" id="help-btn">
+          <div id="help-box">
+            Help Me!
+          </div>
+        </a>
+        <div id="help-content">
+          <h4>Welcome to the Whiteboard Alpha Demo!</h4>
+          <p>This project is still in development. Some functions may not be working.</p>
+          <h4>What to do</h4>
+          <p>Make a profile by clicking the top right icon.</p>
+          <p>View a Project and then critique it.</p>
+          <p>Add your own whiteboard project by clicking the plus button.</p>
+        </div>
       </div>
 
       <div ng-view="" class="ng-view-wrapper"></div>
@@ -110,6 +146,19 @@
         <script src="scripts/controllers/critique.js"></script>
         <script src="scripts/controllers/whiteboard.js"></script>
         <script src="scripts/controllers/project.js"></script>
+        <script src="scripts/controllers/gallery.js"></script>
         <!-- endbuild -->
+
+
+    <script>
+      var imageArray = [];
+
+      $(document).ready(function() {
+        $('#help-btn').click(function() {
+          $('.help').toggleClass('help-me');
+        });
+      });
+      
+    </script>
 </body>
 </html>

@@ -23,7 +23,7 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/gallery.html',
-        controller: 'GalleryCtrl'
+        controller: 'whiteboardCtrl'
       })
       .when('/sticky', {
         templateUrl: 'views/sticky.html',
@@ -48,6 +48,10 @@ angular
       .when('/project', {
         templateUrl: 'views/project.html',
         controller: 'projectCtrl'
+      })
+      .when('/userProject', {
+        templateUrl: 'views/userProject.html',
+        controller: 'whiteboardCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -107,8 +111,92 @@ angular.module('whiteboardApp').factory('drawData', function() {
     }
 });
 
+angular.module('whiteboardApp').factory('imageData', function() {
+  //DRAWINGS
+  var images = [];
 
+   return {
+        listImg: function() {
+            return images;   // items exist already so just return the array
+        },
+        saveImg: function(item) {
+            images.push(item);
+            return images;
+        }
+    }
+});
 
+angular.module('whiteboardApp').factory('titleData', function() {
+
+  //STICKIES
+  var titles = [];
+
+   return {
+        listTitle: function() {
+            return titles;   // items exist already so just return the array
+        },
+        saveTitle: function(item) {
+            titles.push(item);
+            return titles;
+        }
+    }
+});
+
+angular.module('whiteboardApp').factory('projectData', function() {
+
+  //STICKIES
+  var project = [];
+
+   return {
+        listProject: function() {
+            return project;   // items exist already so just return the array
+        },
+        saveProject: function(item) {
+          if(project.length > 5){
+            project.splice(0,4);
+            project.push(item);
+            return project;
+          }else{
+            project.push(item);
+            return project;
+          } 
+        }
+    }
+});
+
+angular.module('whiteboardApp').factory('userData', function() {
+
+  //STICKIES
+  var user = [];
+
+   return {
+        listUser: function() {
+            return user;   // items exist already so just return the array
+        },
+        saveUser: function(item) {
+            user.push(item);
+            return user;
+        }
+    }
+});
+
+angular.module('whiteboardApp').factory('positionData', function() {
+  var stickyPos;
+  var questionPos;
+  var drawPos;
+
+  return {
+    listSticky: function() {
+      return stickyPos;
+    },
+    listQuestion: function() {
+      return questionPos;
+    },
+    listDrawing: function() {
+      return drawPos;
+    }
+  }
+});
 
 
 /* ===== DIRECTIVES =====*/
@@ -148,3 +236,48 @@ angular.module('whiteboardApp').factory('drawData', function() {
       }
     };
   }]);
+
+  angular.module('getPosition', [])
+  .directive('draggable', function() {
+    return{
+      link: function(scope, element, attrs) {
+        element.draggable({
+          
+        })
+      }
+    }
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

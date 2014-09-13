@@ -1,17 +1,8 @@
 <div class="sub-navbar">
-
-  <a href="#">
-    <div class="sub-button" id="hide-leftbar">
-      Hide Tags
-    </div>
-  </a>
-
-  
+  <p id="person-title">The Gallery</p>
 </div>
 
-
 <div class="gallery-container">
-
   <div class="project-container">
     <div class="project">
       <div class="about">
@@ -52,64 +43,31 @@
           <p>Interactive Designer at BCIT</p>
       </div>
       <div class="project-image">
-        
       </div>
+
+
       <div class="project-about">
         <h3>EDGE U of A Branding</h3>
         <p>This is a branding project that includes a logo and a website. This is a personal project that is very corporate.</p>
       </div>
       <a href="#/project">VIEW PROJECT</a>
     </div>
+
 
     <div class="project">
       <div class="about">
-          <img src="images/andy.png" alt="andy-face">
-          <h3>Aaron Cheng</h3>
-          <p>Interactive Designer at BCIT</p>
+          <img src="images/user.png" alt="andy-face">
+          <h3>{{ user[0] }}</h3>
+          <p>{{ user[2] }} at {{ user[1] }}</p>
       </div>
-      <div class="project-image">
-      </div>
-
-
-      <div class="project-about">
-        <h3>EDGE U of A Branding</h3>
-        <p>This is a branding project that includes a logo and a website. This is a personal project that is very corporate.</p>
-      </div>
-      <a href="#/project">VIEW PROJECT</a>
-    </div>
-
-    <div class="project">
-      <div class="about">
-          <img src="images/andy.png" alt="andy-face">
-          <h3>Aaron Cheng</h3>
-          <p>Interactive Designer at BCIT</p>
-      </div>
-      <div class="project-image">
-        
+      <div style="background:url({{ imgs[0] }}) no-repeat center center; background-size:cover;" class="project-image">
       </div>
       <div class="project-about">
-        <h3>EDGE U of A Branding</h3>
-        <p>This is a branding project that includes a logo and a website. This is a personal project that is very corporate.</p>
+        <h3>{{ project[0] }}</h3>
+        <p>{{ project[1] }}</p>
       </div>
-      <a href="#/project">VIEW PROJECT</a>
+      <a href="#/userProject">VIEW PROJECT</a>
     </div>
-
-    <div class="project">
-      <div class="about">
-          <img src="images/andy.png" alt="andy-face">
-          <h3>Aaron Cheng</h3>
-          <p>Interactive Designer at BCIT</p>
-      </div>
-      <div class="project-image">
-        
-      </div>
-      <div class="project-about">
-        <h3>EDGE U of A Branding</h3>
-        <p>This is a branding project that includes a logo and a website. This is a personal project that is very corporate.</p>
-      </div>
-      <a href="#/project">VIEW PROJECT</a>
-    </div>
-    
   </div>
 </div>
 
@@ -137,8 +95,22 @@
     </ul>
 </div>
 
+<!-- <div class="modal-intro">
+  <h2>Welcome to the Whiteboard Prototype Demo</h2>
+  <p>Start the demo by creating a profile by clicking the person icon on the top right.</p>
+
+  <button id="close-intro">Got It!</button>
+</div> -->
 
 
+<script>
+  var imageArray = [];
+  $(document).ready(function() {
+    $('#close-intro').click(function() {
+      $('.modal-intro').addClass('hide-demo');
+    });
+  });
+</script>
 
 
 

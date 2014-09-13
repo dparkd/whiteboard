@@ -1,0 +1,24 @@
+.hide-demo{
+  opacity:0;
+  pointer-events:none;
+  transition: all 0.1s 0 ease-in-out;
+}
+.modal-intro{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(255,255,255,0.9);
+  color:black;
+  top:0;
+  z-index:9999999;
+  padding-top:200px;
+}
+
+button{
+  border-radius:0px;
+  background:black;
+  box-shadow:none;
+  border:none;
+  outline:none;
+  color:white;
+}

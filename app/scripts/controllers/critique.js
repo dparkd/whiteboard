@@ -8,12 +8,15 @@
  * Controller of the codeApp
  */
 
-function CritiqueCtrl($scope, Data, ngDialog, $http, questionData, drawData) {
+
+
+function CritiqueCtrl($scope, Data, ngDialog, $http, questionData, positionData, drawData) {
     //MODALS
     $scope.closeModal = function() {
       $scope.stickyShow = {'opacity':'0', 'pointer-events':'none'};
       $scope.questionShow = {'opacity':'0', 'pointer-events':'none'};
       $scope.drawShow = {'opacity':'0', 'pointer-events':'none'};
+      $scope.projectShow = {'opacity':'0', 'pointer-events':'none'}
     };
 
     
@@ -27,7 +30,9 @@ function CritiqueCtrl($scope, Data, ngDialog, $http, questionData, drawData) {
     $scope.openQuestion = function() {
       $scope.questionShow = {'opacity':'1', 'pointer-events':'auto'};
     };
-
+    $scope.openProject = function() {
+      $scope.projectShow = {'opacity':'1', 'pointer-events':'auto'};
+    };
      
 
     //STICKIES
@@ -36,6 +41,8 @@ function CritiqueCtrl($scope, Data, ngDialog, $http, questionData, drawData) {
     $scope.addSticky = function () {
       Data.saveSticky($scope.sticky);
       $scope.stickyShow = {'opacity':'0', 'pointer-events':'none'};
+      // $scope.successMessage = {'animation':'successAnimation 2s', '-webkit-animation': 'successAnimation 2s'};
+      // $scope.what = 'Sticky';
     };
 
 
@@ -56,25 +63,8 @@ function CritiqueCtrl($scope, Data, ngDialog, $http, questionData, drawData) {
       drawData.saveDrawing($scope.drawingArray[$scope.drawingCounter]);
       $scope.drawShow = {'opacity':'0', 'pointer-events':'none'};
       $scope.drawingCounter ++;
-
-      console.log($scope.drawings);
     };
-
-  
-
-    
 };
-
-
-
-
-
-
-
-
-
-
-
 
 
 

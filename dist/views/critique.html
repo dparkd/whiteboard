@@ -1,0 +1,65 @@
+<div class="critique-toolbar"> <h2>EDGE U of A Branding</h2> <ul class="options"> <a href="" ng-click="openProject()"><li>Project Desctiption</li></a> <a href="" ng-click="openSticky()"><li>add note</li></a> <a href="" ng-click="openDrawing()"><li>add drawing</li></a> <a href="" ng-click="openQuestion()"><li>question</li></a> </ul> </div> <div class="critique-whiteboard"> <!-- sticky boxes --> <div my-draggable class="sticky-box" ng-repeat="sticky in stickies"> <a href="" ng-click="isActive = !isActive"><img src="images/note.648efc08.png" class="icon" alt="note"></a> <div ng-init="isActive = false" ng-class="{'hide-stick': !isActive, 'active-stick': isActive}">{{sticky}} </div> </div> <!-- DRAWING boxes --> <div my-draggable class="draw-box" ng-repeat="drawing in drawings track by $index"> <a href="" ng-click="isActive = !isActive"><img class="icon" src="images/draw.d17c9af5.png" alt="draw"></a> <div id="drawing" ng-init="isActive = false" ng-class="{'hide-stick': !isActive, 'active-stick': isActive}"><img ng-src="{{ drawing }}" alt=""></div> </div> <!-- Question boxes --> <div my-draggable class="question-box" ng-repeat="question in questions"> <a href="" ng-click="isActive = !isActive"><img src="images/question.ea09a736.png" class="icon" alt="question"></a> <div ng-init="isActive = false" ng-class="{'hide-stick': !isActive, 'active-stick': isActive}">{{question}} </div> </div> <!--WHITEBOARD PROJECT--> <img src="images/edgelogo.58fcbd3b.png" alt="edge-logo"> <img src="images/edgestationary.57fffbe4.jpg" alt="edge-stationary"> </div> <!-- SUCCESS MESSAGE --> <div class="success-message" ng-style="successessage"> <h4>{{ what }} was successfully created!</h4> </div> <!-- sticky boxes --> <div ng-style="stickyShow" class="modal"> <form role="form" ng-submit="addSticky()" class="action-form"> <div id="sticky-form"> <div class="input-group"> <input class="writing" type="text" placeholder="Write your note" ng-model="sticky"> </div> <div class="button-group"> <a href="" class="save" ng-click="addSticky()">SAVE</a> <a href="" class="close" ng-click="closeModal()">close</a> </div> </div> </form> </div> <!-- Add drawing --> <div ng-style="drawShow" class="modal"> <form role="form" ng-submit="addDraw()" class="action-form"> <div id="draw-form"> <div class="input-group"> <p>What would you like to draw?</p> <div id="sketch" ng-model="draw"> <canvas id="paint"></canvas> </div> </div> <div class="button-group"> <a href="" ng-click="saveDraw()" id="draw-saving">SAVE</a> <a href="" ng-click="closeModal()">CLOSE</a> <button id="clearDrawing">Clear Drawing</button> </div> </div> </form> </div> <!-- Add Question --> <div ng-style="questionShow" class="modal"> <form role="form" ng-submit="addQuestion()" class="action-form"> <div id="question-form"> <div class="input-group"> <input class="writing" type="text" placeholder="Write your question" ng-model="question"> </div> <div class="button-group"> <a href="" class="save" ng-click="addQuestion()">SAVE</a> <a href="" ng-click="closeModal()">close</a> </div> </div> </form> </div> <!-- Add Question --> <div ng-style="projectShow" class="modal"> <form role="form" ng-submit="addQuestion()" class="action-form"> <div id="project-form"> <div class="input-group"> <h2>Project Description</h2> <p>This was a project where a client asked for a re-branding</p> <h2>Project Scope</h2> <p>I decided to use geometric shapes because this business competition is all about being on top and being on the edge.</p> <h2>Additional Comments</h2> <p>Not wanting to stray from the previous competition, I decided to keep the deep red color, but instead added several more shades to the existing color.</p> </div> <div class="button-group"> <a href="" ng-click="closeModal()">close</a> </div> </div> </form> </div> <script type="text/javascript">$( document ).ready(function() {
+  //canvas drawing scripts
+  var canvas = document.querySelector('#paint');
+  var ctx = canvas.getContext('2d');
+   
+  var sketch = document.querySelector('#sketch');
+  var sketch_style = getComputedStyle(sketch);
+  // canvas.width = parseInt(sketch_style.getPropertyValue('width'));
+  // canvas.height = parseInt(sketch_style.getPropertyValue('height'));
+  canvas.width = 600;
+  canvas.height = 400;
+
+  var mouse = {x: 0, y: 100};
+ 
+  /* Mouse Capturing Work */
+  canvas.addEventListener('mousemove', function(e) {
+    mouse.x = e.pageX - this.offsetLeft;
+    mouse.y = e.pageY - this.offsetTop;
+  }, false);
+
+  /* Drawing on Paint App */
+  ctx.lineWidth = 1;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = '#34495E';
+   
+  canvas.addEventListener('mousedown', function(e) {
+      ctx.beginPath();
+      ctx.moveTo(mouse.x, mouse.y);
+   
+      canvas.addEventListener('mousemove', onPaint, false);
+  }, false);
+   
+  canvas.addEventListener('mouseup', function() {
+      canvas.removeEventListener('mousemove', onPaint, false);
+  }, false);
+   
+  var onPaint = function() {
+      ctx.lineTo(mouse.x, mouse.y);
+      ctx.stroke();
+  };
+
+  $("#clearDrawing").click(function() {
+    ctx.clearRect ( 0 , 0 , canvas.width , canvas.height );
+  });
+});
+
+  //Save canvas as an img
+  var drawingArray = [];
+  $("#draw-saving").click(function() {
+    var painting = document.getElementById("paint");
+    drawingArray.push(painting.toDataURL("image/png"));
+  });
+
+
+/* GRAB POSITION DATA*/
+var stickyPos = [];
+var questionPos;
+var drawPos; 
+
+$(window).on('beforeunload', function() {
+  var position = $('sticky-box').css("top");
+  stickyPos.push(position);
+  return stickyPos;
+});</script>

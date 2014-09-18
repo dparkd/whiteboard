@@ -1,0 +1,15 @@
+<div class="whiteboard-toolbar"> <h2>TITLE: {{ project[0] }}</h2> <ul class="options"> <a href="" ng-click="openProject()"><li>Project Desctiption</li></a> <a href="" ng-click="openText()"><li>add text</li></a> <a href="" ng-click="openImage()"><li>add image</li></a> <a href=""><li>SAVE</li></a> </ul> </div> <div class="critique-whiteboard"> <!-- text boxes --> <div my-draggable ng-repeat="text in titles"> <p class="title-drag">{{ text }}</p> </div> <!-- IMAGE boxes --> <div my-draggable ng-repeat="img in imgs track by $index"> <div class="wb-img"> <img src="{{ img }}" alt=""> </div> </div> </div> <!-- IMAGE boxes --> <div ng-style="projectShow" class="modal"> <form role="form" ng-submit="addProject()" class="action-form"> <div id="question-form"> <div class="input-group"> <input class="pd" type="text" placeholder="Project Title" ng-model="pTitle"> <input class="pd" type="text" placeholder="Project Description" ng-model="description"> <input class="pd" type="text" placeholder="Project scope" ng-model="scope"> <input class="pd" type="text" placeholder="Additional Comments" ng-model="comments"> <div class="button-group"> <a href="" class="save" id="image-saving" ng-click="addProject()">SAVE</a> <a href="" class="close" ng-click="closeModal()">close</a> </div> </div> </div> </form> </div> <!-- IMAGE boxes --> <div ng-style="textShow" class="modal"> <form role="form" ng-submit="addTitle()" class="action-form"> <div id="question-form"> <div class="input-group"> <input class="writing" type="text" placeholder="Write your title" ng-model="title"> <div class="button-group"> <a href="" class="save" ng-click="addTitle()">SAVE</a> <a href="" class="close" ng-click="closeModal()">close</a> </div> </div> </div> </form> </div> <!-- IMAGE boxes --> <div ng-style="imageShow" class="modal"> <form role="form" ng-submit="addImage()" class="action-form"> <div id="question-form"> <div class="input-group"> <input type="file" id="imgInp"> <div class="button-group"> <a href="" class="save" id="image-saving" ng-click="addImage()">SAVE</a> <a href="" class="close" ng-click="closeModal()">close</a> </div> </div> </div> </form> </div> <script>var imageArray = [];
+function readURL(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      
+      reader.onload = function (e) {
+          imageArray.push(e.target.result);
+      }
+      
+      reader.readAsDataURL(input.files[0]);
+  }
+}
+$("#imgInp").change(function(){
+    readURL(this);
+});</script>

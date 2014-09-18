@@ -1,0 +1,17 @@
+<!doctype html> <html class="no-js"> <head> <meta charset="utf-8"> <title></title> <meta name="description" content=""> <meta name="viewport" content="width=device-width"> <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel="stylesheet" href="styles/vendor.0f83a132.css"> <link rel="stylesheet" href="styles/main.83fe0dca.css">  <body ng-app="whiteboardApp"> <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]--> <!-- Add your site or application content here --> <div class="container" ng-controller="whiteboardCtrl"> <div class="header"> <div class="logo"> <a href="#/"><img src="images/critique/logo.fcde8a19.png" alt="logo"></a> </div> <a href="#/whiteboard" class="add-whiteboard"> <i class="fa fa-plus-circle fa-2x fa-inverse"></i><br> <p class="tooltip">Add Whiteboard</p> </a> <form role="form" class="search-form"> <div> <div class="input-group"> <input class="search-write" type="text" placeholder="Search user, tag, or project"> </div> </div> </form> <a ng-click="openProfile()" href="" id="profile-link"> <div class="profile"> <div id="profile-face"> <img src="images/user2.65c55ab5.png" alt="andy-face"> </div> <div id="about-face"> <h3>{{ user[0] }}</h3> <p>{{ user [2] }}</p> </div> </div> </a> </div> <!-- PROFILE --> <div ng-style="profileShow" class="modal"> <form role="form" ng-submit="addUser()" class="action-form"> <div id="profile-form"> <h5>Enter your Information</h5> <div class="input-group"> <input class="pd" type="text" placeholder="Your Name" ng-model="name"> <input class="pd" type="text" placeholder="Your School" ng-model="school"> <input class="pd" type="text" placeholder="Your Design Area" ng-model="area"> </div> <div class="button-group"> <a href="" class="save" ng-click="addUser()">SAVE</a> <a href="" ng-click="closeModal()">close</a> </div> </div> </form> </div> <div class="help"> <a href="" id="help-btn"> <div id="help-box"> Help Me! </div> </a> <div id="help-content"> <h4>Welcome to the Whiteboard Alpha Demo!</h4> <p>This project is still in development. Some functions may not be working.</p> <h4>What to do</h4> <p>Make a profile by clicking the top right icon.</p> <p>View a Project and then critique it.</p> <p>Add your own whiteboard project by clicking the plus button.</p> </div> </div> <div ng-view="" class="ng-view-wrapper"></div> </div> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID --> <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');</script> <!--[if lt IE 9]>
+    <script src="scripts/oldieshim.ff90b0fb.js"></script>
+    <![endif]--> <script src="scripts/vendor.431dd4f9.js"></script> <script src="scripts/scripts.641404a1.js"></script> <script>var imageArray = [];
+
+      $(document).ready(function() {
+        $('#help-btn').click(function() {
+          $('.help').toggleClass('help-me');
+        });
+      });</script>  
